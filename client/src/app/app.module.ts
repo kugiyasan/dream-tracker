@@ -6,12 +6,14 @@ import { AppComponent } from './app/app.component';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { ProjectCardComponent } from './project-card/project-card.component';
 import { ProjectPageComponent } from './project-page/project-page.component';
+import { StatsComponent } from './stats/stats.component';
 import { AllProjectsPageComponent } from './all-projects-page/all-projects-page.component';
 import { AppMaterialModule } from './modules/material.module';
+import {ChartModule} from 'primeng/chart';
 
 @NgModule({
-    declarations: [AppComponent, ProjectCardComponent, ProjectPageComponent, AllProjectsPageComponent],
-    imports: [BrowserModule, AppMaterialModule, AppRoutingModule, NoopAnimationsModule],
+    declarations: [AppComponent, ProjectCardComponent, ProjectPageComponent, AllProjectsPageComponent,StatsComponent],
+    imports: [BrowserModule, AppMaterialModule, AppRoutingModule, NoopAnimationsModule,ChartModule],
 
     providers: [],
     bootstrap: [AppComponent],
