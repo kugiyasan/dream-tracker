@@ -6,10 +6,12 @@ import { AppComponent } from './app/app.component';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { ProjectCardComponent } from './project-card/project-card.component';
 import { MaterialModule } from './material.module';
+import { ProjectPageComponent } from './project-page/project-page.component';
 
 @NgModule({
-    declarations: [AppComponent, ProjectCardComponent],
+    declarations: [AppComponent, ProjectCardComponent, ProjectPageComponent],
     imports: [BrowserModule, AppRoutingModule, NoopAnimationsModule, MaterialModule],
+    
     providers: [],
     bootstrap: [AppComponent],
 })
