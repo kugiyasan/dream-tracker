@@ -9,12 +9,13 @@ import { ProjectPageComponent } from './pages/project-page/project-page.componen
 import { StatsComponent } from './pages/stats/stats.component';
 import { AllProjectsPageComponent } from './pages/all-projects-page/all-projects-page.component';
 import { AppMaterialModule } from './modules/material.module';
-import {ChartModule} from 'primeng/chart';
+import { ChartModule} from 'primeng/chart';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { InputTextareaModule } from "primeng/inputtextarea";
 import { InputTextModule } from "primeng/inputtext";
 import { ButtonModule } from 'primeng/button';
+import { MatInputModule} from '@angular/material/input';
 
 import { TimelineModule } from 'primeng/timeline';
 import { CardModule } from 'primeng/card';
@@ -23,9 +24,10 @@ import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { HttpClientModule } from '@angular/common/http';
 import { CardComponent } from './components/card/card.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
+import { NewProjectComponent } from './pages/new-project/new-project.component';
 
 @NgModule({
-    declarations: [AppComponent, ProjectCardComponent, ProjectPageComponent, AllProjectsPageComponent, StatsComponent, NavbarComponent, CardComponent],
+    declarations: [AppComponent, ProjectCardComponent, ProjectPageComponent, AllProjectsPageComponent, StatsComponent, NavbarComponent, CardComponent, NewProjectComponent],
     imports: [
         AppMaterialModule,
         AppRoutingModule,
@@ -41,6 +43,7 @@ import { NavbarComponent } from './components/navbar/navbar.component';
         TimelineModule,
         CardModule,
         HttpClientModule,
+        MatInputModule,
     ],
 
     providers: [],

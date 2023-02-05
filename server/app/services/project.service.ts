@@ -48,6 +48,10 @@ export class ProjectService {
         return this.projects;
     }
 
+    getProject(id: string): Project | undefined {
+        return this.projects.find((p) => p.id === id);
+    }
+
     addProject(project: Project): Project {
         this.projects.push(project);
         this.writeFile();

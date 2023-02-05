@@ -1,46 +1,26 @@
-<app-navbar title="Create a new project"></app-navbar>
+<app-navbar title="Learn To Dance Project"></app-navbar>
 
 <body class="body-new-entry">
-    <mat-card class="new-entry">
+    <form class="new-entry">
         <mat-card-content>
             <span class="titele">Title of your new entry: </span>
-            <input class="title-create" placeholder="" />
+            <input class="title-create" #boxTitle placeholder="Enter title"/>
             <br />
             <span class="titele">Describe your progression here: </span>
-            <input class="text-create" placeholder="" />
+            <input class="text-create" #boxText placeholder="Enter text" />
         </mat-card-content>
         <mat-card-actions>
-            <button mat-button>Create</button>
+            <button mat-button (onclick)="createValueInput(boxTitle.value, boxText.value)" >Create</button>
         </mat-card-actions>
-    </mat-card>
+      </form>
     <br />
 </body>
 
-<!-- <form class="body-new-entry">
-  <mat-form-field class="new-entry">
-    <mat-label class="title-create">Title of your new entry here</mat-label>
-    <input matInput placeholder="" value="Title">
-  </mat-form-field>
-  <mat-form-field class="new-entry">
-    <mat-label>Describe your progression and accomplichments</mat-label>
-    <textarea matInput placeholder="Ex. It makes me feel..."></textarea>
-  </mat-form-field>
-</form> -->
-
-<div class="card">
-    <p-timeline [value]="events1" align="alternate" styleClass="customized-timeline">
-        <ng-template pTemplate="marker" let-event>
-            <span
-                class="flex z-1 w-2rem h-2rem align-items-center justify-content-center text-white border-circle shadow-2"
-                [style.backgroundColor]="this.color"
-            >
-                <i [ngClass]="this.icon"></i>
-            </span>
-        </ng-template>
-        <ng-template pTemplate="content" let-event>
-            <p-card [header]="event.title" [subheader]="event.date">
-                <p class="line-height-3 my-3">{{ event.content }}</p>
-            </p-card>
-        </ng-template>
-    </p-timeline>
+<div class="dumbstuff">
+<mat-card class="container" *ngFor="let item of list">
+  <mat-card-header>
+    <mat-card-title>{{item.title}}</mat-card-title>
+    <mat-card-subtitle>{{item.text}}</mat-card-subtitle>
+  </mat-card-header>
+</mat-card>
 </div>

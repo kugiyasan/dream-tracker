@@ -1,0 +1,13 @@
+<app-navbar title="Create a new project"></app-navbar>
+
+<mat-form-field appearance="fill">
+    <mat-label>Name</mat-label>
+    <input matInput placeholder="My unicorn company 🦄" [(ngModel)]="name" />
+</mat-form-field>
+
+<mat-form-field appearance="fill">
+    <mat-label>Description</mat-label>
+    <input matInput placeholder="My wonderful idea!" [(ngModel)]="description" />
+</mat-form-field>
+
+<button mat-raised-button color="primary" (click)="createProject()">Create my dream project!</button>
