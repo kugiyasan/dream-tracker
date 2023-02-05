@@ -1,9 +1,4 @@
-<mat-toolbar color="primary">
-    <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
-        <mat-icon>menu</mat-icon>
-    </button>
-    <span>Dream Tracker</span>
-</mat-toolbar>
+<app-navbar title="Dream Tracker"></app-navbar>
 
 <div class="container" infinite-scroll (scrolled)="onScrollDown($event)">
     <app-project-card *ngFor="let project of projects" [project]="project"></app-project-card>
