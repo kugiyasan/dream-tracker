@@ -2,7 +2,8 @@ import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { IInfiniteScrollEvent } from 'ngx-infinite-scroll';
-import { Post, Project, serverUrl } from 'src/app/constants';
+import { Post, Project } from 'src/app/constants';
+import { environment } from 'src/app/environments/environment';
 import { ProjectDataService } from 'src/app/services/project-data.service';
 import { PrimeIcons } from 'primeng/api';
 
@@ -52,8 +53,8 @@ export class ProjectPageComponent {
             createdAt: new Date().getTime().toString(),
         };
 
-        this.http.patch(`${serverUrl}/project/addPost/${this.project.id}`, post).subscribe((response) => {
-          console.log(response);
+        this.http.patch(`${environment.serverUrl}/project/addPost/${this.project.id}`, post).subscribe((response) => {
+            console.log(response);
         });
         let date = new Date();
         date.setTime(parseInt(post.createdAt));
