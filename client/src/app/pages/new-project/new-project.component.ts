@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { Project, serverUrl } from 'src/app/constants';
+import { Post, Project, serverUrl } from 'src/app/constants';
 import { v4 as uuidv4 } from 'uuid';
 
 @Component({
@@ -16,14 +16,21 @@ export class NewProjectComponent {
     constructor(private readonly http: HttpClient, private readonly router: Router) {}
 
     createProject(): void {
+        const post: Post = {
+            title: 'My first post',
+            body: 'Might not be the only first post...',
+            author: 'John Doe',
+            createdAt: new Date().getTime().toString(),
+        };
+
         const body: Project = {
             id: uuidv4(),
             name: this.name,
             description: this.description,
             author: 'Joe Bleau',
             createdAt: new Date().getTime().toString(),
-            thumbnail: 'https://material.angular.io/assets/img/examples/shiba1.jpg',
-            posts: [],
+            thumbnail: 'https://picsum.photos/640/480',
+            posts: [post, post, post],
         };
         console.log(body);
 
