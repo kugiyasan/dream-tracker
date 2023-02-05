@@ -1,12 +1,21 @@
 import { Post, Project } from '@app/types';
+import { readFileSync, writeFileSync } from 'fs';
 import { Service } from 'typedi';
 
 @Service()
 export class ProjectService {
+    private readonly filename = 'projects.json';
     projects: Project[];
+
     constructor() {
-        this.projects = [];
-        this.populateDb();
+        try {
+            const f = readFileSync(this.filename);
+            this.projects = JSON.parse(f.toString());
+        } catch {
+            this.projects = [];
+            this.populateDb();
+            this.writeFile();
+        }
     }
 
     populateDb(): void {
@@ -31,12 +40,17 @@ export class ProjectService {
         }
     }
 
+    writeFile(): void {
+        writeFileSync(this.filename, JSON.stringify(this.projects));
+    }
+
     getAllProjects(): Project[] {
         return this.projects;
     }
 
     addProject(project: Project): Project {
         this.projects.push(project);
+        this.writeFile();
         return project;
     }
 
@@ -44,6 +58,7 @@ export class ProjectService {
         const index = this.projects.findIndex((p) => p.id === id);
         const project = this.projects[index];
         project.posts.push(post);
+        this.writeFile();
         return project;
     }
 }
