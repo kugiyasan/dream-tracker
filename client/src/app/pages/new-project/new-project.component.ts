@@ -18,7 +18,7 @@ export class NewProjectComponent {
     createProject(): void {
         const post: Post = {
             title: 'My first post',
-            body: 'Might not be the only first post...',
+            body: 'This is the start of a wonderful project...',
             author: 'John Doe',
             createdAt: new Date().getTime().toString(),
         };
@@ -30,10 +30,10 @@ export class NewProjectComponent {
             author: 'Joe Bleau',
             createdAt: new Date().getTime().toString(),
             thumbnail: 'https://picsum.photos/640/480',
-            posts: [post, post, post],
+            posts: [post],
         };
-        console.log(body);
 
+        console.log(body);
         this.http.post(`${serverUrl}/project`, body).subscribe(console.log);
 
         this.router.navigateByUrl('/projects');
