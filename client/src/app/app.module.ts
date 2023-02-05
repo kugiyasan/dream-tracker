@@ -20,9 +20,11 @@ import { TimelineModule } from 'primeng/timeline';
 import { CardModule } from 'primeng/card';
 
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
+import { HttpClientModule } from '@angular/common/http';
+import { NavbarComponent } from './navbar/navbar.component';
 
 @NgModule({
-    declarations: [AppComponent, ProjectCardComponent, ProjectPageComponent, AllProjectsPageComponent,StatsComponent],
+    declarations: [AppComponent, ProjectCardComponent, ProjectPageComponent, AllProjectsPageComponent,StatsComponent, NavbarComponent],
     imports: [
         AppMaterialModule, 
         AppRoutingModule, 
@@ -36,10 +38,10 @@ import { InfiniteScrollModule } from 'ngx-infinite-scroll';
         ButtonModule,
         CommonModule,
         TimelineModule,
-        CardModule],
-
-
-
+        CardModule,
+        HttpClientModule,
+    ],
+    
     providers: [],
     bootstrap: [AppComponent],
 })
