@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { IInfiniteScrollEvent } from 'ngx-infinite-scroll';
-import { Project } from '../constants';
-import { ProjectDataService } from '../project-data.service';
+import { Project } from '../../constants';
+import { ProjectDataService } from '../../services/project-data.service';
 
 @Component({
     selector: 'app-all-projects-page',
