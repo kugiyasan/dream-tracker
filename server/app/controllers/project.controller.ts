@@ -73,6 +73,8 @@ export class ProjectController {
         this.router.patch('/addPost/:id', (req: Request, res: Response) => {
             const id: string = req.params.id;
             const post: Post = req.body;
+            console.log({id, post});
+
             const result = this.projectService.addPost(id, post);
             res.json(result);
         });
