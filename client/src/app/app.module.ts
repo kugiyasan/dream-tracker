@@ -13,9 +13,10 @@ import { ChartModule } from 'primeng/chart';
 
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { HttpClientModule } from '@angular/common/http';
+import { CardComponent } from './components/card/card.component';
 
 @NgModule({
-    declarations: [AppComponent, AllProjectsPageComponent, ProjectCardComponent, ProjectPageComponent, StatsComponent],
+    declarations: [AppComponent, AllProjectsPageComponent, ProjectCardComponent, ProjectPageComponent, StatsComponent, CardComponent],
     imports: [AppMaterialModule, AppRoutingModule, BrowserAnimationsModule, BrowserModule, ChartModule, HttpClientModule, InfiniteScrollModule],
 
     providers: [],
