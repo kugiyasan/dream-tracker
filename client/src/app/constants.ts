@@ -14,5 +14,3 @@ export interface Project {
     createdAt: string;
     posts: Post[];
 }
-
-export const serverUrl = 'http://localhost:3000/api';

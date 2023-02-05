@@ -1,7 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { Post, Project, serverUrl } from 'src/app/constants';
+import { Post, Project } from 'src/app/constants';
+import { environment } from 'src/app/environments/environment';
 import { v4 as uuidv4 } from 'uuid';
 
 @Component({
@@ -34,7 +35,7 @@ export class NewProjectComponent {
         };
 
         console.log(body);
-        this.http.post(`${serverUrl}/project`, body).subscribe(console.log);
+        this.http.post(`${environment.serverUrl}/project`, body).subscribe(console.log);
 
         this.router.navigateByUrl('/projects');
     }
