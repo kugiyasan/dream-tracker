@@ -58,6 +58,12 @@ export class ProjectController {
             res.json(projects);
         });
 
+        this.router.get('/:id', (req: Request, res: Response) => {
+            const id: string = req.params.id;
+            const project = this.projectService.getProject(id);
+            res.json(project);
+        });
+
         this.router.post('/', (req: Request, res: Response) => {
             const project: Project = req.body;
             this.projectService.addProject(project);

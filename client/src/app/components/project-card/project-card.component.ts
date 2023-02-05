@@ -8,4 +8,8 @@ import { Project } from '../../constants';
 })
 export class ProjectCardComponent {
     @Input() project!: Project;
+
+    get routerLink() {
+        return `/project/${this.project.id}`;
+    }
 }
