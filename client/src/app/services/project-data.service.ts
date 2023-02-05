@@ -11,4 +11,13 @@ export class ProjectDataService {
     getProjects() {
         return this.http.get<Project[]>(`${serverUrl}/project`);
     }
+
+    getProjectsPerMonth = () => {
+        //console.log(`${serverUrl}/project/stats/year/`);
+        return this.http.get(`${serverUrl}/project/stats/year/`);
+    }
+
+    getPostsPerDay = (id: string) => {
+        return this.http.get(`${serverUrl}/project/stats/week/${id}`);
+    }
 }

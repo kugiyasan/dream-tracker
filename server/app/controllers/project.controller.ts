@@ -70,5 +70,28 @@ export class ProjectController {
             const result = this.projectService.addPost(id, post);
             res.json(result);
         });
+
+        // Make a get request with project id that serve a list of posts stored in the projects. projects are stored in a dictionary by id. no auxiliary function
+        this.router.get('/project/:id', (req: Request, res: Response) => {
+            const id: string = req.params.id;
+            const result = this.projectService.getPosts(id);
+            res.json(result);
+        });
+        
+        // Make a get request with project id that serve a list of posts/day for the last 7 days
+        this.router.get('/stats/week/:id', (req: Request, res: Response) => {
+            const id: string = req.params.id;
+            const result = this.projectService.getPosts7days(id);
+            //console.log(result);
+            res.json(result);
+        });
+
+        // Make a get request with project id that serve a list of projects/months for the last 12 months
+        this.router.get('/stats/year', (req: Request, res: Response) => {
+            const result = this.projectService.getProjects12months();    
+            //console.log(result);
+            res.json(result);
+        });
+        
     }
 }

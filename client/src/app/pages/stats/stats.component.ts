@@ -1,258 +1,252 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Project } from '../../constants';
+import { ProjectDataService } from '../../services/project-data.service';
 
 @Component({
-  selector: 'stats-page',
-  templateUrl: './stats.component.html',
-  styleUrls: ['./stats.component.scss']
+    selector: 'stats-page',
+    templateUrl: './stats.component.html',
+    styleUrls: ['./stats.component.scss']
 })
 export class StatsComponent implements OnInit {
 
-  lineData: any;
+    constructor(private readonly projectDataService: ProjectDataService) { }
 
-  barData: any;
+    lineData: any;
 
-  pieData: any;
+    barData: any;
 
-  polarData: any;
+    pieData: any;
 
-  radarData: any;
+    polarData: any;
 
-  lineOptions: any;
+    radarData: any;
 
-  barOptions: any;
+    lineOptions: any;
 
-  pieOptions: any;
+    barOptions: any;
 
-  polarOptions: any;
+    pieOptions: any;
 
-  radarOptions: any;
+    polarOptions: any;
+
+    radarOptions: any;
+
+    yearStats: any;
 
 
-  ngOnInit() {
-      this.initCharts();
-  }
+    ngOnInit() {
+        this.initCharts();
+    }
 
-  initCharts() {
-      const documentStyle = getComputedStyle(document.documentElement);
-      const textColor = documentStyle.getPropertyValue('--text-color');
-      const textColorSecondary = documentStyle.getPropertyValue('--text-color-secondary');
-      const surfaceBorder = documentStyle.getPropertyValue('--surface-border');
-      
-      this.barData = {
-          labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
-          datasets: [
-              {
-                  label: 'My First dataset',
-                  backgroundColor: documentStyle.getPropertyValue('--primary-500'),
-                  borderColor: documentStyle.getPropertyValue('--primary-500'),
-                  data: [65, 59, 80, 81, 56, 55, 40]
-              },
-              {
-                  label: 'My Second dataset',
-                  backgroundColor: documentStyle.getPropertyValue('--primary-200'),
-                  borderColor: documentStyle.getPropertyValue('--primary-200'),
-                  data: [28, 48, 40, 19, 86, 27, 90]
-              }
-          ]
-      };
+    initCharts() {
+        const documentStyle = getComputedStyle(document.documentElement);
+        const textColor = documentStyle.getPropertyValue('--text-color');
+        const textColorSecondary = documentStyle.getPropertyValue('--text-color-secondary');
+        const surfaceBorder = documentStyle.getPropertyValue('--surface-border');
 
-      this.barOptions = {
-          plugins: {
-              legend: {
-                  labels: {
-                      fontColor: textColor
-                  }
-              }
-          },
-          scales: {
-              x: {
-                  ticks: {
-                      color: textColorSecondary,
-                      font: {
-                          weight: 500
-                      }
-                  },
-                  grid: {
-                      display: false,
-                      drawBorder: false
-                  }
-              },
-              y: {
-                  ticks: {
-                      color: textColorSecondary
-                  },
-                  grid: {
-                      color: surfaceBorder,
-                      drawBorder: false
-                  }
-              },
-          }
-      };
+        this.projectDataService.getProjectsPerMonth().subscribe((data) => {
+            this.yearStats = data;
 
-      this.pieData = {
-          labels: ['A', 'B', 'C'],
-          datasets: [
-              {
-                  data: [540, 325, 702],
-                  backgroundColor: [
-                      documentStyle.getPropertyValue('--indigo-500'),
-                      documentStyle.getPropertyValue('--purple-500'),
-                      documentStyle.getPropertyValue('--teal-500')
-                  ],
-                  hoverBackgroundColor: [
-                      documentStyle.getPropertyValue('--indigo-400'),
-                      documentStyle.getPropertyValue('--purple-400'),
-                      documentStyle.getPropertyValue('--teal-400')
-                  ]
-              }]
-      };
+            this.barData = {
+                labels: Object.keys(data).reverse(),
+                datasets: [
+                    {
+                        label: 'Projects created in the last 12 months',
+                        backgroundColor: documentStyle.getPropertyValue('--primary-500'),
+                        borderColor: documentStyle.getPropertyValue('--primary-500'),
+                        data: Object.values(data).reverse()
+                    }
+                ]
+            };
 
-      this.pieOptions = {
-          plugins: {
-              legend: {
-                  labels: {
-                      usePointStyle: true,
-                      color: textColor
-                  }
-              }
-          }
-      };
+            this.barOptions = {
+                plugins: {
+                    legend: {
+                        labels: {
+                            fontColor: textColor
+                        }
+                    }
+                },
+                scales: {
+                    x: {
+                        ticks: {
+                            color: textColorSecondary,
+                            font: {
+                                weight: 500
+                            }
+                        },
+                        grid: {
+                            display: false,
+                            drawBorder: false
+                        }
+                    },
+                    y: {
+                        ticks: {
+                            color: textColorSecondary,
+                            stepSize: 1
+                        },
+                        grid: {
+                            color: surfaceBorder,
+                            drawBorder: false
+                        }
+                    },
+                }
+            };
+        });
 
-      this.lineData = {
-          labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
-          datasets: [
-              {
-                  label: 'First Dataset',
-                  data: [65, 59, 80, 81, 56, 55, 40],
-                  fill: false,
-                  backgroundColor: documentStyle.getPropertyValue('--primary-500'),
-                  borderColor: documentStyle.getPropertyValue('--primary-500'),
-                  tension: .4
-              },
-              {
-                  label: 'Second Dataset',
-                  data: [28, 48, 40, 19, 86, 27, 90],
-                  fill: false,
-                  backgroundColor: documentStyle.getPropertyValue('--primary-200'),
-                  borderColor: documentStyle.getPropertyValue('--primary-200'),
-                  tension: .4
-              }
-          ]
-      };
+        this.projectDataService.getPostsPerDay('10').subscribe((data) => {
+            this.lineData = {
+                labels: Object.keys(data).reverse(),
+                datasets: [
+                    {
+                        label: 'Posts created in the last 7 days',
+                        data: Object.values(data).reverse(),
+                        fill: false,
+                        backgroundColor: documentStyle.getPropertyValue('--primary-500'),
+                        borderColor: documentStyle.getPropertyValue('--primary-500'),
+                        tension: .4
+                    }
+                ]
+            };
 
-      this.lineOptions = {
-          plugins: {
-              legend: {
-                  labels: {
-                      fontColor: textColor
-                  }
-              }
-          },
-          scales: {
-              x: {
-                  ticks: {
-                      color: textColorSecondary
-                  },
-                  grid: {
-                      color: surfaceBorder,
-                      drawBorder: false
-                  }
-              },
-              y: {
-                  ticks: {
-                      color: textColorSecondary
-                  },
-                  grid: {
-                      color: surfaceBorder,
-                      drawBorder: false
-                  }
-              },
-          }
-      };
+    
+            this.lineOptions = {
+                plugins: {
+                    legend: {
+                        labels: {
+                            fontColor: textColor
+                        }
+                    }
+                },
+                scales: {
+                    x: {
+                        ticks: {
+                            color: textColorSecondary
+                        },
+                        grid: {
+                            color: surfaceBorder,
+                            drawBorder: false
+                        }
+                    },
+                    y: {
+                        ticks: {
+                            color: textColorSecondary,
+                            stepSize: 1
+                        },
+                        grid: {
+                            color: surfaceBorder,
+                            drawBorder: false
+                        }
+                    },
+                }
+            };
+        });
 
-      this.polarData = {
-          datasets: [{
-              data: [
-                  11,
-                  16,
-                  7,
-                  3
-              ],
-              backgroundColor: [
-                  documentStyle.getPropertyValue('--indigo-500'),
-                  documentStyle.getPropertyValue('--purple-500'),
-                  documentStyle.getPropertyValue('--teal-500'),
-                  documentStyle.getPropertyValue('--orange-500')
-              ],
-              label: 'My dataset'
-          }],
-          labels: [
-              'Indigo',
-              'Purple',
-              'Teal',
-              'Orange'
-          ]
-      };
+            this.pieData = {
+                labels: ['A', 'B', 'C'],
+                datasets: [
+                    {
+                        data: [540, 325, 702],
+                        backgroundColor: [
+                            documentStyle.getPropertyValue('--indigo-500'),
+                            documentStyle.getPropertyValue('--purple-500'),
+                            documentStyle.getPropertyValue('--teal-500')
+                        ],
+                        hoverBackgroundColor: [
+                            documentStyle.getPropertyValue('--indigo-400'),
+                            documentStyle.getPropertyValue('--purple-400'),
+                            documentStyle.getPropertyValue('--teal-400')
+                        ]
+                    }]
+            };
 
-      this.polarOptions = {
-          plugins: {
-              legend: {
-                  labels: {
-                      color: textColor
-                  }
-              }
-          },
-          scales: {
-              r: {
-                  grid: {
-                      color: surfaceBorder
-                  }
-              }
-          }
-      };
+            this.pieOptions = {
+                plugins: {
+                    legend: {
+                        labels: {
+                            usePointStyle: true,
+                            color: textColor
+                        }
+                    }
+                }
+            };
 
-      this.radarData = {
-          labels: ['Eating', 'Drinking', 'Sleeping', 'Designing', 'Coding', 'Cycling', 'Running'],
-          datasets: [
-              {
-                  label: 'My First dataset',
-                  borderColor: documentStyle.getPropertyValue('--indigo-400'),
-                  pointBackgroundColor: documentStyle.getPropertyValue('--indigo-400'),
-                  pointBorderColor: documentStyle.getPropertyValue('--indigo-400'),
-                  pointHoverBackgroundColor: textColor,
-                  pointHoverBorderColor: documentStyle.getPropertyValue('--indigo-400'),
-                  data: [65, 59, 90, 81, 56, 55, 40]
-              },
-              {
-                  label: 'My Second dataset',
-                  borderColor: documentStyle.getPropertyValue('--purple-400'),
-                  pointBackgroundColor: documentStyle.getPropertyValue('--purple-400'),
-                  pointBorderColor: documentStyle.getPropertyValue('--purple-400'),
-                  pointHoverBackgroundColor: textColor,
-                  pointHoverBorderColor: documentStyle.getPropertyValue('--purple-400'),
-                  data: [28, 48, 40, 19, 96, 27, 100]
-              }
-          ]
-      };
 
-      this.radarOptions = {
-          plugins: {
-              legend: {
-                  labels: {
-                      fontColor: textColor
-                  }
-              }
-          },
-          scales: {
-              r: {
-                  grid: {
-                      color: textColorSecondary
-                  }
-              }
-          }
-      };
-  }
-  
+
+        this.pieData = {
+            labels: ['A', 'B', 'C'],
+            datasets: [
+                {
+                    data: [540, 325, 702],
+                    backgroundColor: [
+                        documentStyle.getPropertyValue('--indigo-500'),
+                        documentStyle.getPropertyValue('--purple-500'),
+                        documentStyle.getPropertyValue('--teal-500')
+                    ],
+                    hoverBackgroundColor: [
+                        documentStyle.getPropertyValue('--indigo-400'),
+                        documentStyle.getPropertyValue('--purple-400'),
+                        documentStyle.getPropertyValue('--teal-400')
+                    ]
+                }]
+        };
+
+        this.pieOptions = {
+            plugins: {
+                legend: {
+                    labels: {
+                        usePointStyle: true,
+                        color: textColor
+                    }
+                }
+            }
+        };
+
+        this.lineData = {
+            labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+            datasets: [
+                {
+                    label: 'First Dataset',
+                    data: [65, 59, 80, 81, 56, 55, 40],
+                    fill: false,
+                    backgroundColor: documentStyle.getPropertyValue('--primary-500'),
+                    borderColor: documentStyle.getPropertyValue('--primary-500'),
+                    tension: .4
+                }
+            ]
+        };
+
+        this.lineOptions = {
+            plugins: {
+                legend: {
+                    labels: {
+                        fontColor: textColor
+                    }
+                }
+            },
+            scales: {
+                x: {
+                    ticks: {
+                        color: textColorSecondary
+                    },
+                    grid: {
+                        color: surfaceBorder,
+                        drawBorder: false
+                    }
+                },
+                y: {
+                    ticks: {
+                        color: textColorSecondary
+                    },
+                    grid: {
+                        color: surfaceBorder,
+                        drawBorder: false
+                    }
+                },
+            }
+        };
+    }
+
 }
 
 
