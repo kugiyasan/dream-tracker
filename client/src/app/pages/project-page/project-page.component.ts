@@ -29,4 +29,5 @@ export class ProjectPageComponent {
     onScrollDown(event: IInfiniteScrollEvent) {
         console.log('scrolled down!!', event);
     }
+
 }

@@ -24,9 +24,10 @@ import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { HttpClientModule } from '@angular/common/http';
 import { CardComponent } from './components/card/card.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
+import { NewProjectComponent } from './pages/new-project/new-project.component';
 
 @NgModule({
-    declarations: [AppComponent, ProjectCardComponent, ProjectPageComponent, AllProjectsPageComponent, StatsComponent, NavbarComponent, CardComponent],
+    declarations: [AppComponent, ProjectCardComponent, ProjectPageComponent, AllProjectsPageComponent, StatsComponent, NavbarComponent, CardComponent, NewProjectComponent],
     imports: [
         AppMaterialModule,
         AppRoutingModule,
