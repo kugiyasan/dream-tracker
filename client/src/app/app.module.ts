@@ -10,10 +10,11 @@ import { AllProjectsPageComponent } from './all-projects-page/all-projects-page.
 import { AppMaterialModule } from './modules/material.module';
 
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
     declarations: [AppComponent, ProjectCardComponent, ProjectPageComponent, AllProjectsPageComponent],
-    imports: [AppMaterialModule, AppRoutingModule, BrowserAnimationsModule, BrowserModule, InfiniteScrollModule],
+    imports: [AppMaterialModule, AppRoutingModule, BrowserAnimationsModule, BrowserModule, HttpClientModule, InfiniteScrollModule],
 
     providers: [],
     bootstrap: [AppComponent],
