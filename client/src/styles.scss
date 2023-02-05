@@ -14,15 +14,3 @@ body {
     font-family: Roboto, 'Helvetica Neue', sans-serif;
 }
 
-.card {
-    background: var(--surface-card);
-    border: 1px solid var(--surface-border);
-    padding: 2rem;
-    margin-bottom: 2rem;
-    box-shadow: var(--card-shadow);
-    border-radius: 10px;
-
-    &:last-child {
-        margin-bottom: 0;
-    }
-}
