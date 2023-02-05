@@ -6,15 +6,17 @@ import { AppComponent } from './app/app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ProjectCardComponent } from './project-card/project-card.component';
 import { ProjectPageComponent } from './project-page/project-page.component';
+import { StatsComponent } from './stats/stats.component';
 import { AllProjectsPageComponent } from './all-projects-page/all-projects-page.component';
 import { AppMaterialModule } from './modules/material.module';
+import { ChartModule } from 'primeng/chart';
 
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
-    declarations: [AppComponent, ProjectCardComponent, ProjectPageComponent, AllProjectsPageComponent],
-    imports: [AppMaterialModule, AppRoutingModule, BrowserAnimationsModule, BrowserModule, HttpClientModule, InfiniteScrollModule],
+    declarations: [AppComponent, AllProjectsPageComponent, ProjectCardComponent, ProjectPageComponent, StatsComponent],
+    imports: [AppMaterialModule, AppRoutingModule, BrowserAnimationsModule, BrowserModule, ChartModule, HttpClientModule, InfiniteScrollModule],
 
     providers: [],
     bootstrap: [AppComponent],
