@@ -1,22 +1,50 @@
 <app-navbar title="Create a new project"></app-navbar>
+<div class="grid">
+  <mat-toolbar>
+    <button mat-icon-button class="menu-icon">
+      <mat-icon>home</mat-icon>
+    </button>
+    <span class="spacer"></span>
+    <div class="Title">
+      <span>Learn To Dance Project</span>
+    </div>
+    <span class="spacer"></span>
+  </mat-toolbar>
 
-<body class="body-new-entry">
+
+  <div class="card p-fluid">
+    <div class="p-formgrid grid">
+      <div class="field col">
+        <label htmlFor="entrytitle">Title of your new entry</label>
+        <input pInputText id="entrytitle" type="text" />
+      </div>
+      <div class="field col">
+        <label htmlFor="entryDescription">Entry description</label>
+        <textarea rows="5" cols="30" placeholder="Describe what you did" pInputTextarea></textarea>
+      </div>
+      <button pButton label="Submit"></button>
+    </div>
+    
+  </div>
+
+
+  <body class="body-new-entry">
     <mat-card class="new-entry">
-        <mat-card-content>
-            <span class="titele">Title of your new entry: </span>
-            <input class="title-create" placeholder="" />
-            <br />
-            <span class="titele">Describe your progression here: </span>
-            <input class="text-create" placeholder="" />
-        </mat-card-content>
-        <mat-card-actions>
-            <button mat-button>Create</button>
-        </mat-card-actions>
+      <mat-card-content>
+        <span class="titele">Title of your new entry: </span>
+        <input class="title-create" placeholder="">
+        <br>
+        <span class="titele">Describe your progression here: </span>
+        <input class="text-create" placeholder="">
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-button>Create</button>
+      </mat-card-actions>
     </mat-card>
-    <br />
-</body>
+    <br>
+  </body>
 
-<!-- <form class="body-new-entry">
+  <!-- <form class="body-new-entry">
   <mat-form-field class="new-entry">
     <mat-label class="title-create">Title of your new entry here</mat-label>
     <input matInput placeholder="" value="Title">
@@ -26,3 +54,20 @@
     <textarea matInput placeholder="Ex. It makes me feel..."></textarea>
   </mat-form-field>
 </form> -->
+
+</div>
+
+<div class="card">
+  <p-timeline [value]="events1" align="alternate" styleClass="customized-timeline">
+      <ng-template pTemplate="marker" let-event>
+      <span class="flex z-1 w-2rem h-2rem align-items-center justify-content-center text-white border-circle shadow-2" [style.backgroundColor]="this.color">
+          <i [ngClass]="this.icon"></i>
+      </span>
+      </ng-template>
+      <ng-template pTemplate="content" let-event>
+          <p-card [header]="event.title" [subheader]="event.date">
+              <p class="line-height-3 my-3">{{event.content}}</p>
+          </p-card>
+      </ng-template>
+  </p-timeline>
+</div>
