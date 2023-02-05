@@ -1,4 +1,4 @@
-<app-navbar title="Learn To Dance Project"></app-navbar>
+<app-navbar [title]="project.name"></app-navbar>
 
 <body class="body-new-entry">
     <form class="new-entry">
@@ -17,10 +17,18 @@
 </body>
 
 <div class="dumbstuff">
-    <mat-card class="container" *ngFor="let post of project.posts">
-        <mat-card-header>
-            <mat-card-title>{{ post.title }}</mat-card-title>
-            <mat-card-subtitle>{{ post.body }}</mat-card-subtitle>
-        </mat-card-header>
-    </mat-card>
+<div class="card">
+  <p-timeline [value]="project.posts" align="alternate" styleClass="customized-timeline">
+      <ng-template pTemplate="marker" let-post>
+      <span class="flex z-1 w-2rem h-2rem align-items-center justify-content-center text-white border-circle shadow-2" [style.backgroundColor]="this.color">
+          <i [ngClass]="this.icon"></i>
+      </span>
+      </ng-template>
+      <ng-template pTemplate="content" let-post>
+          <p-card [header]="post.title" [subheader]="post.createdAt">
+              <p class="line-height-3 my-3">{{post.body}}</p>
+          </p-card>
+      </ng-template>
+  </p-timeline>
+</div>
 </div>
