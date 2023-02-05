@@ -154,9 +154,12 @@ export class ProjectService {
         return projectsPerMonth;
     }
 
-    addPost(id: string, post: Post): Project {
-        const index = this.projects.findIndex((p) => p.id === id);
-        const project = this.projects[index];
+    addPost(id: string, post: Post): Project | undefined {
+        const project = this.projects.find((p) => p.id === id);
+        if (project === undefined) {
+            return undefined;
+        }
+
         project.posts.push(post);
         this.writeFile();
         return project;
