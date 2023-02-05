@@ -30,16 +30,39 @@
   resize: none;
 }
 
-.container {
-  display: flex;
-  flex-direction: column;
-  width: 50%;
-  margin: 20px;
-  background-color: #ccc;
-}
+// .container {
+//   display: flex;
+//   flex-direction: column;
+//   width: 50%;
+//   margin: 20px;
+//   background-color: #ccc;
+// }
 
-.dumbstuff {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+// .dumbstuff {
+//   display: flex;
+//   flex-direction: column;
+//   align-items: center;
+// }
+
+
+@media screen and (max-width: 960px) {
+  ::ng-deep {
+      .customized-timeline {
+          .p-timeline-event:nth-child(even) {
+              flex-direction: row !important;
+
+              .p-timeline-event-content {
+                  text-align: left !important;
+              }
+          }
+
+          .p-timeline-event-opposite {
+              flex: 0;
+          }
+
+          .p-card {
+              margin-top: 1rem;
+          }
+      }
+  }
 }

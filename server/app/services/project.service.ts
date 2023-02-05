@@ -101,7 +101,7 @@ export class ProjectService {
 
     for (let i = posts.length-1; i >=0; i--) {
         const post = posts[i];
-        const postDate = new Date(Number(post.createdAt)*1000);
+        const postDate = new Date(Number(post.createdAt));
         const diffTime = Math.abs(today.getTime() - postDate.getTime());
         const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
         if (diffDays < 7) {
@@ -136,7 +136,7 @@ export class ProjectService {
         
         for (let i = this.projects.length-1; i >=0; i--) {
             const project = this.projects[i];
-            const projectDate = new Date(Number(project.createdAt)*1000);
+            const projectDate = new Date(Number(project.createdAt));
             const diffTime = Math.abs(today.getTime() - projectDate.getTime());
             const diffMonths = Math.floor(diffTime / (1000 * 60 * 60 * 24 * 30));
             if (diffMonths < 12) {

@@ -4,6 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { IInfiniteScrollEvent } from 'ngx-infinite-scroll';
 import { Post, Project, serverUrl } from 'src/app/constants';
 import { ProjectDataService } from 'src/app/services/project-data.service';
+import { PrimeIcons } from 'primeng/api';
 
 @Component({
     selector: 'app-input',
@@ -12,6 +13,9 @@ import { ProjectDataService } from 'src/app/services/project-data.service';
 })
 export class ProjectPageComponent {
     project: Project;
+    posts: any[] = [];
+    color : string = '#607D8B';
+    icon : string = PrimeIcons.CHECK;
 
     constructor(private route: ActivatedRoute, private readonly http: HttpClient, private readonly projectDataService: ProjectDataService) {
         this.project = {
@@ -30,6 +34,12 @@ export class ProjectPageComponent {
             const id = params.get('projectId') || '';
             this.projectDataService.getProject(id).subscribe((data) => {
                 this.project = data;
+                this.project.posts = this.project.posts.reverse();
+                this.project.posts.forEach((post) => {
+                    let date = new Date();
+                    date.setTime(parseInt(post.createdAt));
+                    post.createdAt = date.toLocaleDateString();
+                });
             });
         });
     }
@@ -45,7 +55,12 @@ export class ProjectPageComponent {
         this.http.patch(`${serverUrl}/project/addPost/${this.project.id}`, post).subscribe((response) => {
           console.log(response);
         });
-        this.project.posts.push(post);
+        let date = new Date();
+        date.setTime(parseInt(post.createdAt));
+        post.createdAt = date.toLocaleDateString();
+        this.project.posts.unshift(post);
+        this.project.posts = [...this.project.posts]
+        
     }
 
     onScrollDown(event: IInfiniteScrollEvent) {
