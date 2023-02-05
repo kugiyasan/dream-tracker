@@ -4,7 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app/app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { ProjectCardComponent } from './pages/project-card/project-card.component';
+import { ProjectCardComponent } from './components/project-card/project-card.component';
 import { ProjectPageComponent } from './pages/project-page/project-page.component';
 import { StatsComponent } from './pages/stats/stats.component';
 import { AllProjectsPageComponent } from './pages/all-projects-page/all-projects-page.component';
