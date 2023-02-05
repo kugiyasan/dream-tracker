@@ -1,20 +1,32 @@
-import { Component} from '@angular/core';
+import { Component } from '@angular/core';
+import { IInfiniteScrollEvent } from 'ngx-infinite-scroll';
 
 @Component({
-  selector: 'app-input',
-  templateUrl: './project-page.component.html',
-  styleUrls: ['./project-page.component.scss']
+    selector: 'app-input',
+    templateUrl: './project-page.component.html',
+    styleUrls: ['./project-page.component.scss'],
 })
 export class ProjectPageComponent {
+    list = [
+        {
+            title: 'getTheTitle',
+            text: 'mock text',
+        },
+        {
+            title: 'title 2',
+            text: 'fake text',
+        },
+    ];
 
-  title = "getTheTitle"
-  text = "getTheText"
+    createValueInput(title: string, text: string) {
+        const newItem = {
+            title,
+            text,
+        };
+        this.list.push(newItem);
+    }
 
-  getValueInput(title: string, text: string){
-    this.title = title;
-    this.text = text;
-  }
-    newEntry(){
-
+    onScrollDown(event: IInfiniteScrollEvent) {
+        console.log('scrolled down!!', event);
     }
 }
